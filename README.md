@@ -209,7 +209,8 @@ For further details, check the [report](Homework_2/AN2DL_Second_Homework.pdf).
 
 ## Final Considerations
 First Homework Final Position: 
-- Private Leaderboard (Final phase): Top 20 over 700+ people   
+- Private Leaderboard (Final phase): Top 20 over 700+ people
+   
 Second Homework Final Position:
 - Public Leaderboard (Intermediate position): 63/197 (197 groups in total)
 - Private Leaderboard (Final Position): 9/197 
