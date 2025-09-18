@@ -52,4 +52,15 @@ To enlarge the dataset and to make the proposed neural network robust to changes
 </table>
 
 </div>
+
 Then, we used the neural network called **ConvNeXtBase** which has 89M of parameters. It was modified by adding 4 more *dense* layers for classifications. It was first trained on the dataset as is and next **transfer leanring with fine tuning** was performed by unfreezing the layers of the network.  
+A validation accuracy of **85.7%** has been obtained after fine tuning. The technique called **Test-Time Augmetation** was also used to improve the performances.    
+For further details, check the [report](Homework 1/AN2DL_First_Homework.pdf).
+
+### Second Homework
+In this assignment, you will receive 64x128 grayscale real images from Mars terrain. Pixels in these images are categorized into five classes, each representing a particular type of terrain. This is a semantic segmentation problem, so your goal is to assign the correct class label to each mask pixel.  
+Pretrained models are **forbidden**.
+
+
+
+
