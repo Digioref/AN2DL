@@ -35,6 +35,7 @@ In this assignment, you will classify 96x96 RGB images of blood cells. These ima
 
 </div>
 
+#### Dataset
 To enlarge the dataset and to make the proposed neural network robust to changes in the dataset, the technique called **Augmentation** was used.
  <table>
   <tr>
@@ -53,7 +54,49 @@ To enlarge the dataset and to make the proposed neural network robust to changes
 
 </div>
 
-Then, we used the neural network called **ConvNeXtBase** which has 89M of parameters. It was modified by adding 4 more *dense* layers for classifications. It was first trained on the dataset as is and next **transfer leanring with fine tuning** was performed by unfreezing the layers of the network.  
+#### Network Architecture
+The implemented network is a **ConvNeXtBase-based transfer learning model** for multi-class image classification, featuring a pretrained backbone with custom fully connected layers to enhance feature representation and regularization.
+
+##### Backbone
+**ConvNeXtBase:**
+- Pretrained on ImageNet, used as a feature extractor.
+- `include_top=False` excludes the original classification head.
+- Frozen weights to preserve learned low- and mid-level features.
+
+##### Custom Top Layers
+**Global Average Pooling:**
+- Reduces spatial dimensions while retaining global feature information.
+**Batch Normalization:**
+- Stabilizes training and accelerates convergence.
+**Dropout Layers:**
+- Two stages of dropout (0.2 and 0.25) reduce overfitting.
+**Fully Connected (Dense) Layers:**
+- Four layers of decreasing size: 512 → 256 → 128 → 64 neurons.
+- ReLU activation introduces non-linearity.
+- Optional BatchNormalization (commented out) for further stabilization.
+
+##### Output Layer
+**Dense Layer with Softmax:**
+- Produces class probabilities for `NUM_CLASSES`.
+
+##### Training Configuration
+**Loss Function:**
+- Categorical cross-entropy with label smoothing (0.1) to improve generalization.
+**Optimizer:**
+- AdamW with Cosine Decay Restarts for adaptive learning rate scheduling.
+**Metrics:**
+- Accuracy, Precision, and Recall for comprehensive evaluation.
+
+##### Key Advantages
+- **Pretrained ConvNeXtBase backbone:** leverages rich, hierarchical features from ImageNet.
+- **Custom top layers:** provide flexibility for different classification tasks.
+- **Dropout and BatchNorm:** reduce overfitting and improve training stability.
+- **Mixed precision training:** speeds up computation and reduces memory usage.
+
+This combination makes the architecture **robust, efficient, and suitable for high-performance image classification tasks**.  
+It was first trained on the dataset as is and next **transfer leanring with fine tuning** was performed by unfreezing the layers of the network.  
+
+#### Results
 A validation accuracy of **85.7%** has been obtained after fine tuning. The technique called **Test-Time Augmetation** was also used to improve the performances.    
 For further details, check the [report](Homework_1/AN2DL_First_Homework.pdf).
 
@@ -77,11 +120,96 @@ Pretrained models are **forbidden**.
 
 </div>
 
+#### Dataset
+We used **Albumentations augmentation pipeline** to augment the dataset creating a dataset which is the union of smaller datasets created trhough augmentation to increase variability and the number of samples. 
 
+#### Network Architecture
 
+The implemented network is an **enhanced U-Net** for image classification/segmentation, integrating several advanced deep learning modules to improve feature extraction, multi-scale context understanding, and attention.  
 
+##### Encoder (Downsampling Path)  
+- **Conv Blocks & ResNet Blocks:**  
+  - Four stages of convolutional processing with residual connections.  
+  - Each block increases feature depth (32 → 64 → 128 → 256).  
+  - Residual shortcuts stabilize training and allow deeper representation learning.  
+- **Squeeze-and-Excitation (SE) Block:**  
+  - Recalibrates channel-wise feature responses by modeling interdependencies between channels.  
+  - Helps the network focus on the most informative features.  
 
+##### Bottleneck  
+- **Multi-Scale ASPP:**  
+  - Atrous Spatial Pyramid Pooling (ASPP) applied at multiple scales (`filters, filters/2, filters/4`).  
+  - Captures both local fine details and global context by combining dilated convolutions with different rates.  
+- **Concatenation with skip features:**  
+  - Deeper features are fused with intermediate representations (e.g., from `d3` and `d4`) for stronger context.  
+- **3×3 Conv Layer:**  
+  - Further processing with 512 filters to unify features before decoding.  
 
+##### Decoder (Upsampling Path)  
+- **Attention Gates:**  
+  - Applied at each skip connection to highlight relevant features and suppress irrelevant background noise.  
+  - Gating signals come from ASPP-enhanced encoder outputs.  
+- **Conv2DTranspose Layers (Deconvolutions):**  
+  - Used for upsampling at each stage (256 → 128 → 64 → 32).  
+- **Weighted Fusion:**  
+  - Combines skip connections and upsampled features adaptively with learned importance weights.  
+- **ResNet Blocks:**  
+  - Each upsampling stage includes a residual block to refine features.  
 
+##### Fusion and Output  
+- **Fusion Block:**  
+  - Upsamples and unifies multi-scale outputs (`u1, u2, u3, u4`) into a single feature representation.  
+  - Uses weighted union to balance contributions from different scales.  
+- **Output Layer:**  
+  - Final **1×1 Conv2D** layer with **Softmax activation** for multi-class classification (5 classes).  
 
+##### Key Innovations  
+- **ResNet Blocks:** enable deep feature learning with stable gradients.  
+- **Squeeze-and-Excitation:** channel attention mechanism to boost informative filters.  
+- **ASPP & Multi-Scale ASPP:** powerful context aggregation at multiple dilation rates.  
+- **Attention Gates:** dynamic feature selection at skip connections.  
+- **Fusion Block:** combines multi-scale decoder outputs into a unified representation.  
 
+This combination makes the architecture **robust, context-aware, and highly discriminative**, ideal for structured visual tasks.
+
+#### Metrics
+We used the **mean IoU (Intersection over Union)** as the metric to evaluate the results.  
+**Categorical Crossentropy** is the loss function.
+**Weights** are used to weight differently the classes, to take into account under-represented classes.
+
+#### Results
+
+<table>
+  <tr>
+    <td valign="top" align="center">
+        <h4>Mask 1</h4>
+      <img src="Images/mask_1.png" alt="Screenshot 1" width="600"/>
+      <br/>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+<table>
+  <tr>
+    <td valign="top" align="center">
+        <h4>Mask 1</h4>
+      <img src="Images/mask_2.png" alt="Screenshot 1" width="600"/>
+      <br/>
+    </td>
+  </tr>
+</table>
+
+</div>
+
+The **final validation mean_IoU** is **72.95%**.  
+We used also **Test-Time Augmentation** to improve the final result.  
+For further details, check the [report](Homework_2/AN2DL_Second_Homework.pdf).
+
+## Final Considerations
+First Homework Final Position: 
+- Private Leaderboard (Final phase): Top 20 over 700+ people 
+Second Homework Final Position:
+- Public Leaderboard (Intermediate position): 63/197 (197 groups in total)
+- Private Leaderboard (Final Position): 9/197 
