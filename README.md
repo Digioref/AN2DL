@@ -196,7 +196,7 @@ We used the **mean IoU (Intersection over Union)** as the metric to evaluate the
 <table>
   <tr>
     <td valign="top" align="center">
-        <h4>Mask 1</h4>
+        <h4>Mask 2</h4>
       <img src="Images/mask_2.png" alt="Screenshot 1" width="600"/>
       <br/>
     </td>
