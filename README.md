@@ -92,7 +92,15 @@ It was first trained on the dataset as is and next **transfer leanring with fine
 
 #### Results
 A validation accuracy of **85.7%** has been obtained after fine tuning. The technique called **Test-Time Augmetation** was also used to improve the performances.    
-For further details, check the [report](Homework_1/AN2DL_First_Homework.pdf).
+For further details, check the [report](Homework_1/AN2DL_First_Homework.pdf).  
+Some results of the trained networks for comparison:
+| Model | Accuracy | Precision | Recall |
+| :--- | :--- | :--- | :--- |
+| MobileNet | 0.5769 | 0.689 | 0.121 |
+| InceptionV3 | 0.658 | 0.7848 | 0.169 |
+| EfficientNet | 0.7272 | 0.9765 | 0.253 |
+| ConvNeXtBase | 0.857 | 0.9879 | 0.2776 |
+| ConvNeXtLarge | 0.8248 | 0.9926 | 0.2643 |
 
 ### Second Homework
 In this assignment, you will receive 64x128 grayscale real images from Mars terrain. Pixels in these images are categorized into five classes, each representing a particular type of terrain. This is a semantic segmentation problem, so your goal is to assign the correct class label to each mask pixel.  
@@ -200,6 +208,13 @@ We used the **mean IoU (Intersection over Union)** as the metric to evaluate the
 The **final validation mean_IoU** is **72.95%**.  
 We used also **Test-Time Augmentation** to improve the final result.  
 For further details, check the [report](Homework_2/AN2DL_Second_Homework.pdf).
+Some results for different loss functions:
+| Loss Function | mean IoU | Accuracy |
+| :--- | :--- | :--- |
+| Dice Loss | 0.6467 | 0.653 |
+| Tversky Loss | 0.6555 | 0.6354 |
+| Focal Loss | 0.682 | 0.674 |
+| Categorical Cross-entropy | 0.7295 | 0.6959 |
 
 ## Final Considerations
 First Homework Final Position: 
