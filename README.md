@@ -1,11 +1,5 @@
 # Artificial Neural Networks and Deep Learning
 
-## Authors
-This Project was developed by:
-- Corradina Davide [@CorraPiano](https://github.com/CorraPiano)
-- De Introna Federico [@federicodeintrona](https://github.com/federicodeintrona)
-- Di Giore Francesco [@Digioref](https://github.com/Digioref)
-
 ## Introduction
 This is the repository for the Homeworks of Artificial Neural Networks and Deep Learning in the academic year 2024/2025 at Polytechnic of Milan.
 
@@ -213,4 +207,10 @@ First Homework Final Position:
    
 Second Homework Final Position:
 - Public Leaderboard (Intermediate position): 63/197 (197 groups in total)
-- Private Leaderboard (Final Position): 9/197 
+- Private Leaderboard (Final Position): 9/197
+
+## Authors
+This Project was developed by:
+- Corradina Davide [@CorraPiano](https://github.com/CorraPiano)
+- De Introna Federico [@federicodeintrona](https://github.com/federicodeintrona)
+- Di Giore Francesco [@Digioref](https://github.com/Digioref)
