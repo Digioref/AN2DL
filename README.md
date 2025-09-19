@@ -185,7 +185,7 @@ We used the **mean IoU (Intersection over Union)** as the metric to evaluate the
   <tr>
     <td valign="top" align="center">
         <h4>Mask 1</h4>
-      <img src="Images/mask_1.png" alt="Screenshot 1" width="600"/>
+      <img src="Images/mask_1.png" alt="Screenshot 1" width="800"/>
       <br/>
     </td>
   </tr>
@@ -197,7 +197,7 @@ We used the **mean IoU (Intersection over Union)** as the metric to evaluate the
   <tr>
     <td valign="top" align="center">
         <h4>Mask 2</h4>
-      <img src="Images/mask_2.png" alt="Screenshot 1" width="600"/>
+      <img src="Images/mask_2.png" alt="Screenshot 1" width="800"/>
       <br/>
     </td>
   </tr>
@@ -207,7 +207,7 @@ We used the **mean IoU (Intersection over Union)** as the metric to evaluate the
 
 The **final validation mean_IoU** is **72.95%**.  
 We used also **Test-Time Augmentation** to improve the final result.  
-For further details, check the [report](Homework_2/AN2DL_Second_Homework.pdf).
+For further details, check the [report](Homework_2/AN2DL_Second_Homework.pdf).  
 Some results for different loss functions:
 | Loss Function | mean IoU | Accuracy |
 | :--- | :--- | :--- |
